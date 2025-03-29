@@ -6,6 +6,8 @@ pip install trism
 pip install https://github.com/hieupth/trism
 ```
 ## How to use
+### 1. For Standard Models
+
 ```python
 from trism import TritonModel
 
@@ -26,6 +28,48 @@ for out in model.outputs:
 # Inference.
 outputs = model.run(data = [np.array(...)])
 ```
+
+
+### 2. For VLM Models (Streaming)
+
+
+### Configuration for VLM Streaming
+
+To enable VLM streaming, you need to add the following configuration to your `config.pbtxt` file:
+
+```plaintext
+
+parameters [
+  {
+    key: "stream"
+    value: { string_value: "true" }
+  }
+]
+
+```
+
+### Inferences VLM model
+
+```python
+from trism import TritonVLMModel
+import asyncio
+
+async def main():
+      vlm = TritonVLMModel(model="vllm_model" # Model name.
+      ,version=1                              # Model version.
+      ,url="localhost:8001")                  # Triton Server URL.
+      await vlm.setup()
+      async for token in vlm.generate("Why is the color of ocean blue?", show_thinking= False, max_tokens= 4096):
+          vlm.preprocess_streaming(token)
+      await vlm._serverclient.close()
+asyncio.run(main())
+
+
+```
+
+
 ## License
 [GNU AGPL v3.0](LICENSE).<br>
 Copyright &copy; 2024 [Hieu Pham](https://github.com/hieupth). All rights reserved.
+
+

@@ -1,1 +1,1 @@
-from .model import TritonModel 
+from .model import TritonModel, TritonVLMModel
