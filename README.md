@@ -61,7 +61,7 @@ async def main():
         "max_tokens": 4096
     }
     async for token in vlm.run("Why is the color of ocean blue?", sampling_parameters=sampling_parameters, show_thinking=True):
-        print(token) # Check input
+        print(token) # Check output
     await vlm._serverclient.close()
 
 asyncio.run(main())
