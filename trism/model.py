@@ -131,16 +131,3 @@ class TritonLMModel:
                     yield text
 
 
-import asyncio
-
-async def main():
-    vlm = TritonLMModel(model="vllm_model", version=1, url="localhost:8001")
-    sampling_parameters = {
-        "temperature": 0.7,
-        "max_tokens": 4096
-    }
-    async for token in vlm.run("Why is the color of ocean blue?", sampling_parameters=sampling_parameters, show_thinking=False):
-        print(token) # Check output
-    await vlm._serverclient.close()
-
-asyncio.run(main())
