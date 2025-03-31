@@ -124,7 +124,7 @@ class TritonLMModel:
                 text = token.decode("utf-8")    
                 cache += text
                 if show_thinking == False:
-                    if "</think>" in cache:
+                    if "</think>" in cache and text != '</think>':
                         yield text
                         continue
                 else:
