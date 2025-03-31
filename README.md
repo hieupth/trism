@@ -51,7 +51,7 @@ parameters [
 ### Inferences VLM model
 
 ```python
-from trism import TritonVLMModel
+from trism import TritonLMModel
 import asyncio
 
 async def main():
