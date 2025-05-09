@@ -1,5 +1,5 @@
 # Python TRISM
-**TR**iton **I**nference **S**erver **M**odel is a simple Python package that helps us infer with Triton Inference Server easily.
+The Triton Inference Server Model is a lightweight Python package designed to simplify and streamline the process of performing inference using the Triton Inference Server.
 ```bash
 pip install trism
 # Or
